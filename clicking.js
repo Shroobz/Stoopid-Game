@@ -1,10 +1,9 @@
 let score = new OmegaNum(1)
-let clicks = 0
 let dt = new OmegaNum(1)
 let a1 = new OmegaNum(1)
 let a = new OmegaNum(1)
 let t = new OmegaNum(0)
-b = new OmegaNum(1)
+let b = new OmegaNum(1)
 let up1 = new OmegaNum(0)
 let up1price = new OmegaNum(1.05)
 let up2 = new OmegaNum(0)
@@ -22,29 +21,36 @@ function UpdateText() {
   document.getElementById("t").innerHTML = format(t, 1)
 }
 
-function Tick(ticks = new OmegaNum(1)) {
-  a1 = a.mul(b).pow(t.div(5).add(1).log(2).add(1))
-  score = OmegaNum.mul(score, OmegaNum.pow(OmegaNum.pow(Math.E, a.div(1000)), ticks))
-  up1price = OmegaNum.pow(10, up1.add(1).pow(up1).sub(1)).mul(1.05)
-  up2price = OmegaNum.pow(10, up2.add(1).pow(up2.mul(2).sub(1)).sub(1)).mul(1.5)
-  t = t.add(dt.div(10))
+function Tick(ticks = dt) {
+  a1 = OmegaNum.mul(a, b).pow(OmegaNum.div(t, 5).add(1).log(2).add(1))
+  score = OmegaNum.mul(score, OmegaNum.pow(Math.E, OmegaNum.mul(OmegaNum.div(a, 1000), ticks)))
+  up1price = OmegaNum.pow(10, OmegaNum.add(up1, 1).pow(up1).sub(1)).mul(1.05)
+  up2price = OmegaNum.pow(10, OmegaNum.add(up2, 1).pow(OmegaNum.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
+  t = OmegaNum.add(t, OmegaNum.div(dt, 10))
   UpdateText()
 }
 
+
 function Click() {
-  Tick(dt.mul(5))
+  Tick(OmegaNum.mul(dt, 3))
 }
 function Loop() {
-  Tick(dt)
+  var answer = window.orientation > 1;
+  document.getElementById("answer").innerHTML = answer
+  if (answer == true) {
+    Tick(dt*4) // mobile users get buffed idle gain
+  } else {
+    Tick(dt)
+  }
 }
 function buyup1() {
   if (score.gte(up1price)) {
     console.log("Requirement met, changing score")
     score =score.div(up1price)
     console.log("changing a")
-    a = a.mul(2)
+    a = OmegaNum.mul(a, 2)
     console.log("changing up1")
-    up1 = up1.add(1)
+    up1 = OmegaNum.add(up1, 1)
   } else {
     console.log("Requirement not met")
   }
@@ -54,9 +60,9 @@ function buyup2() {
     console.log("Requirement met, changing score")
     score = score.div(up2price)
     console.log("changing b")
-    b = b.mul(2)
+    b = OmegaNum.mul(b, 2)
     console.log("changing up2")
-    up2 = up2.add(1)
+    up2 = OmegaNum.add(up2, 1)
   } else {
     console.log("Requirement not met")
   }

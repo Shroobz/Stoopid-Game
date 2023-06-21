@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<body>
+<body onload="load()">
   <script src="OmegaNum.min.js"></script>
   <script src="format-omeganum.js"></script>
+  <script src="saving.js"></script>
   <script src="clicking.js"></script>
-  <button onclick="Click()">score = score*(e^(a1/1000))^dt</button>
+  <button onclick="Click()">score = score*(e^(a1/1000*dt))</button>
   <p>Score: <span id="score">1.000</span></p>
   <p>a1: (a * b)^(log2(t/5+1)+1): <span id="a1">1.000</span></p>
   <p>a: <span id="a">1.000</span></p>
@@ -18,5 +19,6 @@
   <p>t: <span id="t">0.000</span></p>
   <button onclick="buyup1()">Multiply a by 2 for <span id="up1cost">1.05</span> score</button>
   <button onclick="buyup2()">Multiply b by 2 for <span id="up2cost">1.5</span> score</button>
+  <p>Detected as mobile device: <span id="answer"></span></p>
 </body>
 </html>
