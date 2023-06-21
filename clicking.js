@@ -38,7 +38,7 @@ function Loop() {
   var answer = window.orientation > 1;
   document.getElementById("answer").innerHTML = answer
   if (answer == true) {
-    Tick(dt*4) // mobile users get buffed idle gain
+    Tick(OmegaNum.mul(dt, 4)) // mobile users get buffed idle gain
   } else {
     Tick(dt)
   }
