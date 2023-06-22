@@ -21,7 +21,16 @@ function UpdateText() {
   document.getElementById("t").innerHTML = format(t, 1)
 }
 
-function Tick(ticks = dt) {
+function Tick(click = false) {
+  let ticks = new OmegaNum(dt)
+  var answer = window.orientation > 1;
+  document.getElementById("answer").innerHTML = answer
+  answer = true
+  if (answer == true) {
+    OmegaNum.mul(ticks, 4) // mobile users get buffed idle gain
+  } else if (click == true) {
+    OmegaNum.mul(ticks, 2)
+  }
   a1 = OmegaNum.mul(a, b).pow(OmegaNum.div(t, 5).add(1).log(2).add(1))
   score = OmegaNum.mul(score, OmegaNum.pow(Math.E, OmegaNum.mul(OmegaNum.div(a, 1000), ticks)))
   up1price = OmegaNum.pow(10, OmegaNum.add(up1, 1).pow(up1).sub(1)).mul(1.05)
@@ -32,16 +41,10 @@ function Tick(ticks = dt) {
 
 
 function Click() {
-  Tick(OmegaNum.mul(dt, 3))
+  Tick(true)
 }
 function Loop() {
-  var answer = window.orientation > 1;
-  document.getElementById("answer").innerHTML = answer
-  if (answer == true) {
-    Tick(dt*4) // mobile users get buffed idle gain
-  } else {
-    Tick(dt)
-  }
+  Tick()
 }
 function buyup1() {
   if (score.gte(up1price)) {

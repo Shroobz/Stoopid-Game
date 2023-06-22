@@ -40,4 +40,5 @@ function load() {
 
 function deletesave() {
   localStorage.removeItem("save")
+  location.reload()
 }
