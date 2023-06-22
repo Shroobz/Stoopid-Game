@@ -8,6 +8,7 @@ let up1 = new OmegaNum(0)
 let up1price = new OmegaNum(1.05)
 let up2 = new OmegaNum(0)
 let up2price = new OmegaNum(1.5)
+let a2 = new OmegaNum(0.001)
 setInterval(Loop, 100)
 
 function UpdateText() {
@@ -19,9 +20,19 @@ function UpdateText() {
   document.getElementById("up2cost").innerHTML = format(up2price, 3)
   document.getElementById("dt").innerHTML = format(dt, 3)
   document.getElementById("t").innerHTML = format(t, 1)
+  document.getElementById("a2").innerHTML = format(a2, 4)
+  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(1000)
+  document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
 }
 
 function Tick(click = false) {
+  let prestigebutton = document.getElementById("prestigebutton")
+  if (OmegaNum.gte(score, OmegaNum.pow(10, 15))) {
+    prestigebutton.style.display = "block"
+  } else {
+    prestigebutton.style.display = "none"
+  }
+
   let ticks = new OmegaNum(dt)
   var answer = window.orientation > 1;
   document.getElementById("answer").innerHTML = answer
@@ -31,8 +42,8 @@ function Tick(click = false) {
   } else if (click == true) {
     OmegaNum.mul(ticks, 2)
   }
-  a1 = OmegaNum.mul(a, b).pow(OmegaNum.div(t, 5).add(1).log(2).add(1))
-  score = OmegaNum.mul(score, OmegaNum.pow(Math.E, OmegaNum.mul(OmegaNum.div(a, 1000), ticks)))
+  a1 = OmegaNum.mul(a, b).mul(OmegaNum.div(t, 5).add(1).log(2).add(1))
+  score = OmegaNum.mul(score, OmegaNum.pow(Math.E, OmegaNum.mul(OmegaNum.mul(a1, a2), ticks)))
   up1price = OmegaNum.pow(10, OmegaNum.add(up1, 1).pow(up1).sub(1)).mul(1.05)
   up2price = OmegaNum.pow(10, OmegaNum.add(up2, 1).pow(OmegaNum.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
   t = OmegaNum.add(t, OmegaNum.div(dt, 10))
@@ -70,3 +81,19 @@ function buyup2() {
     console.log("Requirement not met")
   }
 }
+function prestige() {
+  let prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(1000)
+  score = new OmegaNum(1)
+  dt = new OmegaNum(1)
+  a1 = new OmegaNum(1)
+  a = new OmegaNum(1)
+  t = new OmegaNum(0)
+  b = new OmegaNum(1)
+  up1 = new OmegaNum(0)
+  up1price = new OmegaNum(1.05)
+  up2 = new OmegaNum(0)
+  up2price = new OmegaNum(1.5)
+  a2 = OmegaNum.add(a2, prestigegain)
+  save()
+}
+
