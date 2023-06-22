@@ -23,62 +23,65 @@ function UpdateText() {
   document.getElementById("a2").innerHTML = format(a2, 4)
   prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(1000)
   document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
-}
-
-function Tick(click = false) {
   let prestigebutton = document.getElementById("prestigebutton")
   if (OmegaNum.gte(score, OmegaNum.pow(10, 15))) {
     prestigebutton.style.display = "block"
   } else {
     prestigebutton.style.display = "none"
   }
+}
 
-  let ticks = new OmegaNum(dt)
-  var answer = window.orientation > 1;
-  document.getElementById("answer").innerHTML = answer
-  answer = true
-  if (answer == true) {
-    OmegaNum.mul(ticks, 4) // mobile users get buffed idle gain
-  } else if (click == true) {
-    OmegaNum.mul(ticks, 2)
-  }
-  a1 = OmegaNum.mul(a, b).mul(OmegaNum.div(t, 5).add(1).log(2).add(1))
-  score = OmegaNum.mul(score, OmegaNum.pow(Math.E, OmegaNum.mul(OmegaNum.mul(a1, a2), ticks)))
+function UpdatePrice() {
   up1price = OmegaNum.pow(10, OmegaNum.add(up1, 1).pow(up1).sub(1)).mul(1.05)
   up2price = OmegaNum.pow(10, OmegaNum.add(up2, 1).pow(OmegaNum.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
+}
+
+function Tick(mult = 1) {
+  if (mult >= 100) {
+    mult = 100
+  }
+  let ticks = new OmegaNum(dt).mul(mult)
+  var answer = window.orientation > 1;
+  document.getElementById("answer").innerHTML = answer
+  if (answer == true) {
+    OmegaNum.mul(ticks, 4) // mobile users get buffed idle gain 
+  } 
+  a1 = OmegaNum.mul(a, b).mul(OmegaNum.div(t, 5).add(1).log(2).add(1))
+  score = OmegaNum.mul(score, OmegaNum.pow(Math.E, OmegaNum.mul(a1, a2), ticks))
+  UpdatePrice()
   t = OmegaNum.add(t, OmegaNum.div(dt, 10))
   UpdateText()
 }
 
-
 function Click() {
-  Tick(true)
+  Tick(3)
 }
 function Loop() {
   Tick()
+  if (!score.gte(1)) {
+    score = new OmegaNum(1)
+  }
 }
 function buyup1() {
-  if (score.gte(up1price)) {
+  while (score.gte(up1price)) {
     console.log("Requirement met, changing score")
     score =score.div(up1price)
     console.log("changing a")
     a = OmegaNum.mul(a, 2)
     console.log("changing up1")
     up1 = OmegaNum.add(up1, 1)
-  } else {
-    console.log("Requirement not met")
-  }
+    UpdatePrice()
+  } 
 }
 function buyup2() {
-  if (score.gte(up2price)) {
+  while (score.gte(up2price)) {
     console.log("Requirement met, changing score")
     score = score.div(up2price)
     console.log("changing b")
     b = OmegaNum.mul(b, 2)
     console.log("changing up2")
     up2 = OmegaNum.add(up2, 1)
-  } else {
-    console.log("Requirement not met")
+    UpdatePrice()
   }
 }
 function prestige() {
@@ -96,4 +99,3 @@ function prestige() {
   a2 = OmegaNum.add(a2, prestigegain)
   save()
 }
-
