@@ -27,8 +27,8 @@ function load() {
   if (typeof savegame.dt == "undefined") dt = new OmegaNum(1);
   if (typeof savegame.a !== "undefined") a = savegame.a;
   if (typeof savegame.a == "undefined") a = new OmegaNum(1);
-  if (typeof savegame.a !== "undefined") a2 = savegame.a2;
-  if (typeof savegame.a == "undefined") a2 = new OmegaNum(0.001);
+  if (typeof savegame.a2 !== "undefined") a2 = savegame.a2;
+  if (typeof savegame.a2 == "undefined") a2 = new OmegaNum(0.001);
   if (typeof savegame.t !== "undefined") t = savegame.t;
   if (typeof savegame.t == "undefined") t = new OmegaNum(0);
   if (typeof savegame.b !== "undefined") b = savegame.b;
