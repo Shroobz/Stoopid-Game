@@ -125,7 +125,7 @@ function buyup3() {
   while (score.gte(up3price)) {
     console.log("Requirement met, changing score")
     score = score.div(up3price)
-    console.log("changing up2")
+    console.log("changing up3")
     up3 = OmegaNum.add(up3, 1)
     UpdatePrice()
   }
@@ -134,10 +134,17 @@ function buyup4() {
   while (score.gte(up4price)) {
     console.log("Requirement met, changing score")
     score = score.div(up4price)
-    console.log("changing up2")
+    console.log("changing up4")
     up4 = OmegaNum.add(up4, 1)
     UpdatePrice()
   }
+}
+
+function buyall() {
+  buyup1()
+  buyup2()
+  buyup3()
+  buyup4()
 }
 
 

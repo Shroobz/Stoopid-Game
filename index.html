@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>imagine reading this</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body onload="load()">
   <script src="OmegaNum.min.js"></script>
@@ -11,20 +12,22 @@
   <script src="saving.js"></script>
   <script src="clicking.js"></script>
   <script src="sleep.js"></script>
-  <button onclick="Click()">score = score*(e^(a1*a2*dt))^(ticks done)</button>
-  <p>Score: <span id="score">1.000</span></p>
-  <p>a2: <span id="a2">0.001</span></p>
-  <p>a1: abc(log2(t/5+1)+1): <span id="a1">1.000</span></p>
-  <p>a: <span id="a">1.000</span></p>
-  <p>b: <span id="b">1.000</span></p>
-  <p>c: <span id="c">1.000</span></p>
-  <p>dt: <span id="dt">1.000</span></p>
-  <p>t: <span id="t">0.000</span></p>
-  <button onclick="buyup1()">Multiply a by 2 for <span id="up1cost">1.05</span> score</button>
-  <button onclick="buyup2()">Multiply b by 2 for <span id="up2cost">1.5</span> score</button>
-  <button onclick="buyup3()">Multiply c by 2 for <span id="up3cost">1.000e308</span> score</button>
-  <button onclick="buyup4()">Add 1 to dt for <span id="up4cost">1.000e18</span> score</button>
+  <button onclick="Click()" id="clickbutton">score = score*(e^(a1*a2*dt))^(ticks done)</button>
+  <p id="tutorial">Guess you stumbled across this page <br> So here's a quick explanation of all the stats: <br> a1, a2 and dt all increase score every tick <br> a, b and c multiply together to make a1 <br> then it's multiplied by log2(t/5+1)+1 <br> t increases by dt/10 every tick <br> <br> a tick happens every 0.1 seconds (10 times every second), <br> if you click the button you do 3 ticks at once <br> <br> also, after 500 upgrades scaling goes way faster so be ready for that</p>
+  <p class="vartext" id="score_txt">Score: <span id="score">1.000</span></p>
+  <p class="vartext" id="a2_txt">a2: <span id="a2">0.001</span></p>
+  <p class="vartext" id="a1_txt">a1: <span id="a1">1.000</span></p>
+  <p class="vartext" id="a_txt">a: <span id="a">1.000</span></p>
+  <p class="vartext" id="b_txt">b: <span id="b">1.000</span></p>
+  <p class="vartext" id="c_txt">c: <span id="c">1.000</span></p>
+  <p class="vartext" id="dt_txt">dt: <span id="dt">1.000</span></p>
+  <p class="vartext" id="t_txt">t: <span id="t">0.000</span></p>
+  <button onclick="buyup1()" class="upgrades" id="up1">Multiply a by 2 for <span id="up1cost">1.05</span> score</button>
+  <button onclick="buyup2()" class="upgrades" id="up2">Multiply b by 2 for <span id="up2cost">1.5</span> score</button>
+  <button onclick="buyup3()" class="upgrades" id="up3">Multiply c by 2 for <span id="up3cost">1.000e308</span> score</button>
+  <button onclick="buyup4()" class="upgrades" id="up4">Add 1 to dt for <span id="up4cost">1.000e18</span> score</button>
+  <button onclick="buyall()" id="buyallbutton">Buy all upgrades</button>
   
-  <p>Detected as mobile device: <span id="answer"></span> (switch to wide view if ur on mobile)</p>
+  <p id="mobiledetection">Detected as mobile device: <span id="answer"></span> (switch to wide view if ur on mobile)</p>
   <button onclick="prestige()" id="prestigebutton">Prestige for <span id="prestigegain">1.00</span> a2</button>
 </html>
