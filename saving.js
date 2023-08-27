@@ -12,12 +12,13 @@ function save() {
   var save = {
     score: score,
     dt: dt,
-    a: a,
     a2: a2,
     t: t,
-    b: b,
     up1: up1,
     up2: up2,
+    up3: up3,
+    up4: up4,
+    
     savetime: Date.now()
   }
   localStorage.setItem("save",JSON.stringify(save));
@@ -31,41 +32,49 @@ function load() {
   if (typeof savegame.score == "undefined") score = new OmegaNum(1);
   if (typeof savegame.dt !== "undefined") dt = savegame.dt;
   if (typeof savegame.dt == "undefined") dt = new OmegaNum(1);
-  if (typeof savegame.a !== "undefined") a = savegame.a;
-  if (typeof savegame.a == "undefined") a = new OmegaNum(1);
   if (typeof savegame.a2 !== "undefined") a2 = savegame.a2;
   if (typeof savegame.a2 == "undefined") a2 = new OmegaNum(0.001);
   if (typeof savegame.t !== "undefined") t = savegame.t;
   if (typeof savegame.t == "undefined") t = new OmegaNum(0);
-  if (typeof savegame.b !== "undefined") b = savegame.b;
-  if (typeof savegame.b == "undefined") b = new OmegaNum(1);
   if (typeof savegame.up1 !== "undefined") up1 = savegame.up1;
   if (typeof savegame.up1 == "undefined") up1 = new OmegaNum(0);
   if (typeof savegame.up2 !== "undefined") up2 = savegame.up2;
   if (typeof savegame.up2 == "undefined") up2 = new OmegaNum(0);
+  if (typeof savegame.up3 !== "undefined") up3 = savegame.up3;
+  if (typeof savegame.up3 == "undefined") up3 = new OmegaNum(0);
+  if (typeof savegame.up4 !== "undefined") up4 = savegame.up4;
+  if (typeof savegame.up4 == "undefined") up4 = new OmegaNum(0);
   console.log("done loading")
   console.log("calculating offline progress")
   if (typeof savegame.savetime !== "undefined") {
     timesincesave = Date.now()-savegame.savetime
     tickstobedone = timesincesave/100
     console.log(tickstobedone)
+    if (tickstobedone > 50000) {
+      let ticksdone = 0
+      for (var i = 0; i < tickstobedone/1000-40; i++) {
+        Tick(1000)
+        ticksdone += 1000
+      }
+      tickstobedone -= ticksdone
+    }
     if (tickstobedone > 5000) {
       let ticksdone = 0
-      for (var i = 0; i < tickstobedone/100; i++) {
+      for (var i = 0; i < tickstobedone/100-40; i++) {
         Tick(100)
         ticksdone += 100
       }
       tickstobedone -= ticksdone
     }
-    if (tickstobedone > 500) {
+    if (tickstobedone > 100) {
       let ticksdone = 0
-      for (var i = 0; i < tickstobedone/10; i++) {
+      for (var i = 0; i < tickstobedone/10-40; i++) {
         Tick(10)
         ticksdone += 10
       }
       tickstobedone -= ticksdone
     }
-    if (tickstobedone <= 500) {
+    if (tickstobedone <= 100) {
       for (var i = 0; i < tickstobedone; i++) {
         Tick()
       }

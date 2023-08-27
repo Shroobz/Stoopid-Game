@@ -14,14 +14,17 @@
   <button onclick="Click()">score = score*(e^(a1*a2*dt))^(ticks done)</button>
   <p>Score: <span id="score">1.000</span></p>
   <p>a2: <span id="a2">0.001</span></p>
-  <p>a1: (a * b)*(log2(t/5+1)+1): <span id="a1">1.000</span></p>
+  <p>a1: abc(log2(t/5+1)+1): <span id="a1">1.000</span></p>
   <p>a: <span id="a">1.000</span></p>
   <p>b: <span id="b">1.000</span></p>
+  <p>c: <span id="c">1.000</span></p>
   <p>dt: <span id="dt">1.000</span></p>
   <p>t: <span id="t">0.000</span></p>
   <button onclick="buyup1()">Multiply a by 2 for <span id="up1cost">1.05</span> score</button>
   <button onclick="buyup2()">Multiply b by 2 for <span id="up2cost">1.5</span> score</button>
+  <button onclick="buyup3()">Multiply c by 2 for <span id="up3cost">1.000e308</span> score</button>
+  <button onclick="buyup4()">Add 1 to dt for <span id="up4cost">1.000e18</span> score</button>
+  
   <p>Detected as mobile device: <span id="answer"></span> (switch to wide view if ur on mobile)</p>
   <button onclick="prestige()" id="prestigebutton">Prestige for <span id="prestigegain">1.00</span> a2</button>
-</body>
 </html>

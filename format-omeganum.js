@@ -1,3 +1,5 @@
+
+
 // format-omeganum.js by cloudytheconqueror
 // Code snippets from NumberFormating.js of ducdat0507's The Communitree,
 // which is based on The Modding Tree by Acamaeda (and ported to OmegaNum by upvoid),
