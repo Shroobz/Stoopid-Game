@@ -16,32 +16,36 @@ body {
 
 #up1 {
   position: absolute;
-  width: 15%;
+  width: 225px;
+  height: 50px;
   bottom: 30%;
-  left: 33%;
+  left: 35%;
 }
 #up2 {
   position: absolute;
   left: 49%;
-  width: 15%;
+  width: 225px;
+  height: 50px;
   bottom: 30%;
 }
 #up3 {
   position: absolute;
-  width: 15%;
+  width: 225px;
+  height: 50px;
   bottom: 23%;
-  left: 33%;
+  left: 35%;
 }
 #up4 {
   position: absolute;
   left: 49%;
-  width: 15%;
+  width: 225px;
+  height: 50px;
   bottom: 23%;
 }
 #buyallbutton {
   position: absolute;
-  width: 7.5%;
-  height: 12.5%;
+  width: 125px;
+  height: 125px;
   bottom: 9%;
   left: 44.75%;
   border-radius: 50%;
@@ -111,9 +115,9 @@ body {
 #clickbutton {
   position: absolute;
   left: 35%;
-  bottom: 50%;
+  bottom: 45%;
   width: 25%;
-  height: 5%;
+  height: 10%;
   border: solid 4px;
   border-radius: 40px;
 }
