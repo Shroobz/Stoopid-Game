@@ -11,41 +11,45 @@ body {
   position: absolute;
   left: 1%;
   top: 20%;
-  width: 25%
+  width: 15%
 }
 
 #up1 {
   position: absolute;
-  width: 225px;
-  height: 50px;
+  width: 15%;
+  height: 6%;
+  font-family: Comic Sans;
   bottom: 30%;
-  left: 35%;
+  left: 33%;
 }
 #up2 {
   position: absolute;
   left: 49%;
-  width: 225px;
-  height: 50px;
+  width: 15%;
+  height: 6%;
+  font-family: Comic Sans;
   bottom: 30%;
 }
 #up3 {
   position: absolute;
-  width: 225px;
-  height: 50px;
+  width: 15%;
+  height: 6%;
+  font-family: Comic Sans;
   bottom: 23%;
-  left: 35%;
+  left: 33%;
 }
 #up4 {
   position: absolute;
   left: 49%;
-  width: 225px;
-  height: 50px;
+  width: 15%;
+  height: 6%;
+  font-family: Comic Sans;
   bottom: 23%;
 }
 #buyallbutton {
   position: absolute;
-  width: 125px;
-  height: 125px;
+  width: 7.5%;
+  height: 12.5%;
   bottom: 9%;
   left: 44.75%;
   border-radius: 50%;
@@ -135,4 +139,12 @@ body {
 
 button:active {
   background-color: rgb(172, 172, 172);
+}
+
+button {
+  font-size: 1vw;
+}
+
+p {
+  font-size: 1vw;
 }
