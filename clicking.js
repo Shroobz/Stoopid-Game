@@ -48,8 +48,6 @@ function UpdateText() {
   document.getElementById("a3").innerHTML = format(a3, 3)
   if (OmegaNum.gt(a3, 1)) {
     document.getElementById("a3_txt").style.display = "block"
-  } else {
-    document.getElementById("a3_txt").style.display = "none"
   }
   prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400).mul(a3)
   document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
@@ -76,8 +74,6 @@ function UpdateText() {
     document.getElementById("buypup1").style.display = "none"
     if (OmegaNum.gte(a2, OmegaNum('1e12'))) {
       document.getElementById("rebirthbutton").style.display = "block"
-    } else {
-      document.getElementById("rebirthbutton").style.display = "none"
     }
   }
   
