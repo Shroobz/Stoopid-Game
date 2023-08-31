@@ -13,12 +13,13 @@ function save() {
     score: score,
     dt: dt,
     a2: a2,
+    a3: a3,
     t: t,
     up1: up1,
     up2: up2,
     up3: up3,
     up4: up4,
-    
+    pup1: pup1,
     savetime: Date.now()
   }
   localStorage.setItem("save",JSON.stringify(save));
@@ -34,6 +35,8 @@ function load() {
   if (typeof savegame.dt == "undefined") dt = new OmegaNum(1);
   if (typeof savegame.a2 !== "undefined") a2 = savegame.a2;
   if (typeof savegame.a2 == "undefined") a2 = new OmegaNum(0.001);
+  if (typeof savegame.a3 !== "undefined") a3 = savegame.a3;
+  if (typeof savegame.a3 == "undefined") a3 = new OmegaNum(1);
   if (typeof savegame.t !== "undefined") t = savegame.t;
   if (typeof savegame.t == "undefined") t = new OmegaNum(0);
   if (typeof savegame.up1 !== "undefined") up1 = savegame.up1;
@@ -44,6 +47,8 @@ function load() {
   if (typeof savegame.up3 == "undefined") up3 = new OmegaNum(0);
   if (typeof savegame.up4 !== "undefined") up4 = savegame.up4;
   if (typeof savegame.up4 == "undefined") up4 = new OmegaNum(0);
+  if (typeof savegame.pup1 !== "undefined") pup1 = savegame.pup1;
+  if (typeof savegame.pup1 == "undefined") pup1 = false;
   console.log("done loading")
   console.log("calculating offline progress")
   if (typeof savegame.savetime !== "undefined") {

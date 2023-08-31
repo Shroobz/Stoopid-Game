@@ -105,7 +105,12 @@ body {
 
 #t_txt {
   position: absolute;
-  left: 45%;
+  left: 39%;
+  top: 15%;
+}
+#a3_txt {
+  position: absolute;
+  left: 50%;
   top: 15%;
 }
 
@@ -132,6 +137,30 @@ body {
   left: 35%;
 }
 
+#buypup1 {
+  width: 20%;
+  height: 15%;
+  position: absolute;
+  top: 30%;
+  right: 1.2%;
+  border-radius: 49%;
+}
+#rebirthbutton {
+  width: 20%;
+  height: 15%;
+  position: absolute;
+  top: 30%;
+  right: 1.2%;
+  border-radius: 49%;
+}
+#toggleautoup {
+  width: 15%;
+  height: 12.5%;
+  position: absolute;
+  top: 50%;
+  right: 1.2%;
+  border-radius: 25%;
+}
 
 .vartext {
   font-family: Courier New;

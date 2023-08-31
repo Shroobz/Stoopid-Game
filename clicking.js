@@ -15,10 +15,21 @@ let up3 = new OmegaNum(0)
 let up3price = new OmegaNum(10^308)
 let up4 = new OmegaNum(0)
 let up4price = new OmegaNum(10^308)
-
+let pup1 = false
 let a2 = new OmegaNum(0.001)
 let prestigegain = new OmegaNum(0)
+let autobuy = false
+let a3 = OmegaNum(1)
 setInterval(Loop, 100)
+
+function toggleautobuy() {
+  if (autobuy == false) {
+    autobuy = true
+  } else {
+    autobuy = false
+  }
+  document.getElementById("autobuy").innerHTML = autobuy
+}
 
 function UpdateText() {
   document.getElementById("score").innerHTML = format(score, 3)
@@ -34,15 +45,41 @@ function UpdateText() {
   document.getElementById("dt").innerHTML = format(dt, 3)
   document.getElementById("t").innerHTML = format(t, 1)
   document.getElementById("a2").innerHTML = format(a2, 4)
-  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(1000)
+  document.getElementById("a3").innerHTML = format(a3, 3)
+  if (OmegaNum.gt(a3, 1)) {
+    document.getElementById("a3_txt").style.display = "block"
+  } else {
+    document.getElementById("a3_txt").style.display = "none"
+  }
+  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400).mul(a3)
   document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
+  let rebirthgain = OmegaNum.log(a2).div(10)
+  document.getElementById("rebirthgain").innerHTML = format(rebirthgain, 3)
   let prestigebutton = document.getElementById("prestigebutton")
   if (OmegaNum.gte(score, OmegaNum.pow(10, 15))) {
     prestigebutton.style.display = "block"
   } else {
     prestigebutton.style.display = "none"
   }
-
+  if (pup1 == true) {
+    document.getElementById("toggleautoup").style.display = "block"
+  } else {
+    document.getElementById("toggleautoup").style.display = "none"
+  }
+  if (pup1 == false) {
+    if (OmegaNum.gte(a2, OmegaNum('1e12'))) {
+      document.getElementById("buypup1").style.display = "block"
+    } else {
+      document.getElementById("buypup1").style.display = "none"
+    }
+  } else {
+    document.getElementById("buypup1").style.display = "none"
+    if (OmegaNum.gte(a2, OmegaNum('1e12'))) {
+      document.getElementById("rebirthbutton").style.display = "block"
+    } else {
+      document.getElementById("rebirthbutton").style.display = "none"
+    }
+  }
   
 }
 
@@ -86,8 +123,11 @@ function Tick(mult = 1) {
   a1 = OmegaNum.mul(a, b).mul(c).mul(OmegaNum.div(t, 5).add(1).log(2).add(1))
   score = OmegaNum.mul(score, OmegaNum.pow(OmegaNum.pow(Math.E, OmegaNum.mul(a1, a2).mul(dt)), mult))
   UpdatePrice()
-  t = OmegaNum.add(t, OmegaNum.div(dt, 10))
+  t = OmegaNum.add(t, OmegaNum.div(dt, 10).mul(mult))
   UpdateText()
+  if (pup1 == true && autobuy == true) {
+    buyall()
+  }
 }
 
 function Click() {
@@ -147,10 +187,29 @@ function buyall() {
   buyup4()
 }
 
+function buyprestigeup1() {
+  if (pup1 == false) {
+    if (OmegaNum.gte(a2, OmegaNum('1e12'))) {
+      pup1 = true
+      a2 = OmegaNum(0.001)
+      score = new OmegaNum(1)
+      dt = new OmegaNum(1)
+      a1 = new OmegaNum(1)
+      a = new OmegaNum(1)
+      t = new OmegaNum(0)
+      b = new OmegaNum(1)
+      up1 = new OmegaNum(0)
+      up2 = new OmegaNum(0)
+      up3 = new OmegaNum(0)
+      up4 = new OmegaNum(0)
+      save()
+    }
+  }
+}
 
 
 function prestige() {
-  let prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(1000)
+  prestigegain = prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400).mul(a3)
   score = new OmegaNum(1)
   dt = new OmegaNum(1)
   a1 = new OmegaNum(1)
@@ -162,5 +221,22 @@ function prestige() {
   up3 = new OmegaNum(0)
   up4 = new OmegaNum(0)
   a2 = OmegaNum.add(a2, prestigegain)
+  save()
+}
+
+function rebirth() {
+  let rebirthgain = OmegaNum.log(a2).div(10)
+  score = new OmegaNum(1)
+  dt = new OmegaNum(1)
+  a1 = new OmegaNum(1)
+  a = new OmegaNum(1)
+  t = new OmegaNum(0)
+  b = new OmegaNum(1)
+  up1 = new OmegaNum(0)
+  up2 = new OmegaNum(0)
+  up3 = new OmegaNum(0)
+  up4 = new OmegaNum(0)
+  a2 = OmegaNum(0.001)
+  a3 = OmegaNum.add(a3, rebirthgain)
   save()
 }
