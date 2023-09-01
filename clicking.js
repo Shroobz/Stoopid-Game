@@ -1,4 +1,4 @@
-
+// github won't let me push the update so i added this dumb comment
 
 let score = new OmegaNum(1)
 let dt = new OmegaNum(1)
