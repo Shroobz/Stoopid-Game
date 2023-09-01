@@ -76,7 +76,9 @@ function UpdateText() {
       document.getElementById("rebirthbutton").style.display = "block"
     }
   }
-  
+  if (!OmegaNum.gte(a2, OmegaNum('1e12'))) {
+    document.getElementById("rebirthbutton").style.display = "block"
+  }
 }
 
 function UpdatePrice() {
