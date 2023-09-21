@@ -116,7 +116,8 @@ body {
 
 #score_txt {
   position: absolute;
-  left: 42.5%;
+  left: 37.5%;
+  width: 25%;
   bottom: 55%;
   font-size: 24px
 }

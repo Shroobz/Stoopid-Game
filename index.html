@@ -13,7 +13,7 @@
   <script src="clicking.js"></script>
   <script src="sleep.js"></script>
   <button onclick="Click()" id="clickbutton">score = score*(e^(a1*a2*dt))^(ticks done)</button>
-  <p id="tutorial">Guess you stumbled across this page <br> So here's a quick explanation of all the stats: <br> a1, a2 and dt all increase score every tick <br> a, b and c multiply together to make a1 <br> then it's multiplied by log2(t/5+1)+1 <br> t increases by dt/10 every tick <br> <br> a tick happens every 0.1 seconds (10 times every second), <br> if you click the button you do 3 ticks at once <br> <br> also, after 500 upgrades scaling goes way faster so be ready for that</p>
+  <p id="tutorial">Formulas for the nerds<br> a1 = abc(log(t/5+1)+1) <br>t = t+dt/10</p>
   <p class="vartext" id="score_txt">Score: <span id="score">1.000</span></p>
   <p class="vartext" id="a3_txt">a3: <span id="a3">1.000</span></p>
   <p class="vartext" id="a2_txt">a2: <span id="a2">0.0010</span></p>

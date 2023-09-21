@@ -1,4 +1,3 @@
-// github won't let me push the update so i added this dumb comment
 
 let score = new OmegaNum(1)
 let dt = new OmegaNum(1)
@@ -20,7 +19,7 @@ let a2 = new OmegaNum(0.001)
 let prestigegain = new OmegaNum(0)
 let autobuy = false
 let a3 = OmegaNum(1)
-setInterval(Loop, 100)
+setInterval(Loop, 50)
 
 function toggleautobuy() {
   if (autobuy == false) {
@@ -32,6 +31,7 @@ function toggleautobuy() {
 }
 
 function UpdateText() {
+  
   document.getElementById("score").innerHTML = format(score, 3)
 
   document.getElementById("a1").innerHTML = format(a1, 3)
@@ -48,13 +48,15 @@ function UpdateText() {
   document.getElementById("a3").innerHTML = format(a3, 3)
   if (OmegaNum.gt(a3, 1)) {
     document.getElementById("a3_txt").style.display = "block"
+    document.getElementById("clickbutton").innerHTML = "score = score*(e^(a1*a2*a3*dt))^(ticks done)"
+    document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(log(t/5+1)+1) <br>t = t+dt/10 <br>a2 gain * a3"
   }
-  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400).mul(a3)
+  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400)
   document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
-  let rebirthgain = OmegaNum.log(a2).div(10)
+  let rebirthgain = OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25).div(12.5).add(1)
   document.getElementById("rebirthgain").innerHTML = format(rebirthgain, 3)
   let prestigebutton = document.getElementById("prestigebutton")
-  if (OmegaNum.gte(score, OmegaNum.pow(10, 15))) {
+  if (OmegaNum.gte(score, OmegaNum.pow(2, 1024))) {
     prestigebutton.style.display = "block"
   } else {
     prestigebutton.style.display = "none"
@@ -89,22 +91,22 @@ function UpdatePrice() {
   if (OmegaNum.lte(up1, 500)) {
     up1price = OmegaNum.pow(10, OmegaNum.add(up1, 1).pow(up1).sub(1)).mul(1.05)
   } else {
-    up1price = OmegaNum.pow(10, OmegaNum.add(up1, 1).pow(OmegaNum.pow(up1, 2))).mul(1.05)
+    up1price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up1, 124), 1).pow(OmegaNum.sub(up1, 124)).sub(1)).mul(1.05).tetrate(OmegaNum.sub(up1, 124))
   }
   if (OmegaNum.lte(up2, 500)) {
     up2price = OmegaNum.pow(10, OmegaNum.add(up2, 1).pow(OmegaNum.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
   } else {
-    up2price = OmegaNum.pow(10, OmegaNum.add(up2, 1).pow(OmegaNum.pow(up2, 3).sub(1)).sub(1)).mul(1.5)
+    up2price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up2, 124), 1).pow(OmegaNum.sub(up2, 124)).sub(1)).mul(1.5).tetrate(OmegaNum.sub(up2, 124))
   }
   if (OmegaNum.lte(up3, 500)) {
     up3price = OmegaNum.pow(10, OmegaNum.add(up3, 1).pow(OmegaNum.mul(up3, 5).sub(1)).sub(1)).mul(OmegaNum.pow(10, 308))
   } else {
-    up3price = OmegaNum.pow(10, OmegaNum.add(up3, 1).pow(OmegaNum.pow(up3, 5).sub(1)).sub(1)).mul(OmegaNum.pow(10, 308))
+    up3price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up3, 124), 1).pow(OmegaNum.mul(OmegaNum.sub(up3, 124), 5).sub(1)).sub(1)).mul(OmegaNum.pow(10, 308)).tetrate(OmegaNum.sub(up3, 124))
   }
   if (OmegaNum.lte(up4, 500)) {
     up4price = OmegaNum.pow(10, OmegaNum.add(up4, 1).pow(OmegaNum.sub(up4, 1)).sub(1)).mul(OmegaNum.pow(10, 18))
   } else {
-    up4price = OmegaNum.pow(10, OmegaNum.add(up4, 1).pow(OmegaNum.pow(up4, 2).sub(1)).sub(1)).mul(OmegaNum.pow(10, 18))
+    up4price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up4, 124), 1).pow(OmegaNum.sub(up4, 125)).sub(1)).mul(OmegaNum.pow(10, 18)).tetrate(OmegaNum.sub(up4, 124))
   }
   
 }
@@ -119,7 +121,7 @@ function Tick(mult = 1) {
     mult *= 4
   } 
   a1 = OmegaNum.mul(a, b).mul(c).mul(OmegaNum.div(t, 5).add(1).log(2).add(1))
-  score = OmegaNum.mul(score, OmegaNum.pow(OmegaNum.pow(Math.E, OmegaNum.mul(a1, a2).mul(dt)), mult))
+  score = OmegaNum.mul(score, OmegaNum.pow(OmegaNum.pow(Math.E, OmegaNum.mul(a1, a2).mul(dt).mul(a3)), mult))
   UpdatePrice()
   t = OmegaNum.add(t, OmegaNum.div(dt, 10).mul(mult))
   UpdateText()
@@ -133,49 +135,57 @@ function Click() {
 }
 function Loop() {
   Tick()
-  if (!score.gte(1)) {
-    score = new OmegaNum(1)
+  if (!score.gte(1.01)) {
+    score = new OmegaNum(1.01)
   }
 }
 function buyup1() {
   while (score.gte(up1price)) {
-    console.log("Requirement met, changing score")
     score = score.div(up1price)
-    console.log("changing a")
-    a = OmegaNum.mul(a, 2)
-    console.log("changing up1")
     up1 = OmegaNum.add(up1, 1)
-    UpdatePrice()
+    if (OmegaNum.lte(up1, 500)) {
+      up1price = OmegaNum.pow(10, OmegaNum.add(up1, 1).pow(up1).sub(1)).mul(1.05)
+    } else {
+      up1price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up1, 120), 1).pow(OmegaNum.sub(up1, 120)).sub(1)).mul(1.05).tetrate(up1)
+    }
   } 
+  UpdatePrice()
 }
 function buyup2() {
   while (score.gte(up2price)) {
-    console.log("Requirement met, changing score")
     score = score.div(up2price)
-    console.log("changing b")
-    b = OmegaNum.mul(b, 2)
-    console.log("changing up2")
     up2 = OmegaNum.add(up2, 1)
-    UpdatePrice()
+    if (OmegaNum.lte(up2, 500)) {
+      up2price = OmegaNum.pow(10, OmegaNum.add(up2, 1).pow(OmegaNum.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
+    } else {
+      up2price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up2, 120), 1).pow(OmegaNum.sub(up2, 120)).sub(1)).mul(1.5).tetrate(up2)
+    }
   }
+  UpdatePrice()
 }
 function buyup3() {
   while (score.gte(up3price)) {
-    console.log("Requirement met, changing score")
     score = score.div(up3price)
-    console.log("changing up3")
     up3 = OmegaNum.add(up3, 1)
-    UpdatePrice()
+    if (OmegaNum.lte(up3, 500)) {
+      up3price = OmegaNum.pow(10, OmegaNum.add(up3, 1).pow(OmegaNum.mul(up3, 5).sub(1)).sub(1)).mul(OmegaNum.pow(10, 308))
+    } else {
+      up3price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up3, 120), 1).pow(OmegaNum.mul(OmegaNum.sub(up3, 120), 5).sub(1)).sub(1)).mul(OmegaNum.pow(10, 308)).tetrate(up3)
+    }
   }
+  UpdatePrice()
 }
 function buyup4() {
   while (score.gte(up4price)) {
-    console.log("Requirement met, changing score")
     score = score.div(up4price)
-    console.log("changing up4")
     up4 = OmegaNum.add(up4, 1)
-    UpdatePrice()
+    if (OmegaNum.lte(up4, 500)) {
+      up4price = OmegaNum.pow(10, OmegaNum.add(up4, 1).pow(OmegaNum.sub(up4, 1)).sub(1)).mul(OmegaNum.pow(10, 18))
+    } else {
+      up4price = OmegaNum.pow(100, OmegaNum.add(OmegaNum.sub(up4, 120), 1).pow(OmegaNum.sub(up4, 121)).sub(1)).mul(OmegaNum.pow(10, 18)).tetrate(up3)
+    }
   }
+  UpdatePrice()
 }
 
 function buyall() {
@@ -207,7 +217,7 @@ function buyprestigeup1() {
 
 
 function prestige() {
-  prestigegain = prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400).mul(a3)
+  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400)
   score = new OmegaNum(1)
   dt = new OmegaNum(1)
   a1 = new OmegaNum(1)
@@ -223,7 +233,7 @@ function prestige() {
 }
 
 function rebirth() {
-  let rebirthgain = OmegaNum.log(a2).div(10)
+  let rebirthgain = OmegaNum.add(a3, OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25).div(12.5).add(1))
   score = new OmegaNum(1)
   dt = new OmegaNum(1)
   a1 = new OmegaNum(1)
@@ -235,6 +245,6 @@ function rebirth() {
   up3 = new OmegaNum(0)
   up4 = new OmegaNum(0)
   a2 = OmegaNum(0.001)
-  a3 = OmegaNum.add(a3, rebirthgain)
+  a3 = rebirthgain
   save()
 }
