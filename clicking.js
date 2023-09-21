@@ -1,3 +1,4 @@
+// Hey! no peeking
 
 let score = new OmegaNum(1)
 let dt = new OmegaNum(1)
