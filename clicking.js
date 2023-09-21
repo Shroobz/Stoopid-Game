@@ -54,7 +54,7 @@ function UpdateText() {
   }
   prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400)
   document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
-  let rebirthgain = OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25).div(12.5).add(1)
+  let rebirthgain = OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25)
   document.getElementById("rebirthgain").innerHTML = format(rebirthgain, 3)
   let prestigebutton = document.getElementById("prestigebutton")
   if (OmegaNum.gte(score, OmegaNum.pow(2, 1024))) {
@@ -234,7 +234,7 @@ function prestige() {
 }
 
 function rebirth() {
-  let rebirthgain = OmegaNum.add(a3, OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25).div(12.5).add(1))
+  let rebirthgain = OmegaNum.add(a3, OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25))
   score = new OmegaNum(1)
   dt = new OmegaNum(1)
   a1 = new OmegaNum(1)
