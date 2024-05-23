@@ -218,7 +218,7 @@ function buyprestigeup1() {
 
 
 function prestige() {
-  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400)
+  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400).mul(a3)
   score = new OmegaNum(1)
   dt = new OmegaNum(1)
   a1 = new OmegaNum(1)
