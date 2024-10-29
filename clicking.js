@@ -234,7 +234,7 @@ function prestige() {
 }
 
 function rebirth() {
-  let rebirthgain = OmegaNum.mul(a3, OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25))
+  let rebirthgain = OmegaNum.add(a3, OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25))
   score = new OmegaNum(1)
   dt = new OmegaNum(1)
   a1 = new OmegaNum(1)
