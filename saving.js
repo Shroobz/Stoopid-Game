@@ -55,7 +55,7 @@ function load() {
   console.log("calculating offline progress")
   if (typeof savegame.savetime !== "undefined") {
     timesincesave = Date.now()-savegame.savetime
-    tickstobedone = timesincesave/100
+    tickstobedone = Math.min(timesincesave/100, 250000)
     console.log(tickstobedone)
     if (tickstobedone > 50000) {
       let ticksdone = 0
