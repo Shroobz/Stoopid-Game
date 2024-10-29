@@ -41,49 +41,51 @@ function load() {
   dt = new OmegaNum(1);
   score = new OmegaNum(1);
   var savegame = JSON.parse(localStorage.getItem("save"));
-  if (typeof savegame.score !== "undefined") score = savegame.score;
-  if (typeof savegame.dt !== "undefined") dt = savegame.dt;
-  if (typeof savegame.a2 !== "undefined") a2 = savegame.a2;
-  if (typeof savegame.a3 !== "undefined") a3 = savegame.a3;
-  if (typeof savegame.t !== "undefined") t = savegame.t;
-  if (typeof savegame.up1 !== "undefined") up1 = savegame.up1;
-  if (typeof savegame.up2 !== "undefined") up2 = savegame.up2;
-  if (typeof savegame.up3 !== "undefined") up3 = savegame.up3;
-  if (typeof savegame.up4 !== "undefined") up4 = savegame.up4;
-  if (typeof savegame.pup1 !== "undefined") pup1 = savegame.pup1;
-  console.log("done loading")
-  console.log("calculating offline progress")
-  if (typeof savegame.savetime !== "undefined") {
-    timesincesave = Date.now()-savegame.savetime
-    tickstobedone = Math.min(timesincesave/100, 250000)
-    console.log(tickstobedone)
-    if (tickstobedone > 50000) {
-      let ticksdone = 0
-      for (var i = 0; i < tickstobedone/1000-40; i++) {
-        Tick(1000)
-        ticksdone += 1000
+  if (savegame.savetime > 1730192705380) {
+    if (typeof savegame.score !== "undefined") score = savegame.score;
+    if (typeof savegame.dt !== "undefined") dt = savegame.dt;
+    if (typeof savegame.a2 !== "undefined") a2 = savegame.a2;
+    if (typeof savegame.a3 !== "undefined") a3 = savegame.a3;
+    if (typeof savegame.t !== "undefined") t = savegame.t;
+    if (typeof savegame.up1 !== "undefined") up1 = savegame.up1;
+    if (typeof savegame.up2 !== "undefined") up2 = savegame.up2;
+    if (typeof savegame.up3 !== "undefined") up3 = savegame.up3;
+    if (typeof savegame.up4 !== "undefined") up4 = savegame.up4;
+    if (typeof savegame.pup1 !== "undefined") pup1 = savegame.pup1;
+    console.log("done loading")
+    console.log("calculating offline progress")
+    if (typeof savegame.savetime !== "undefined") {
+      timesincesave = Date.now()-savegame.savetime
+      tickstobedone = Math.min(timesincesave/100, 250000)
+      console.log(tickstobedone)
+      if (tickstobedone > 50000) {
+        let ticksdone = 0
+        for (var i = 0; i < tickstobedone/1000-40; i++) {
+          Tick(1000)
+          ticksdone += 1000
+        }
+        tickstobedone -= ticksdone
       }
-      tickstobedone -= ticksdone
-    }
-    if (tickstobedone > 5000) {
-      let ticksdone = 0
-      for (var i = 0; i < tickstobedone/100-40; i++) {
-        Tick(100)
-        ticksdone += 100
+      if (tickstobedone > 5000) {
+        let ticksdone = 0
+        for (var i = 0; i < tickstobedone/100-40; i++) {
+          Tick(100)
+          ticksdone += 100
+        }
+        tickstobedone -= ticksdone
       }
-      tickstobedone -= ticksdone
-    }
-    if (tickstobedone > 100) {
-      let ticksdone = 0
-      for (var i = 0; i < tickstobedone/10-40; i++) {
-        Tick(10)
-        ticksdone += 10
+      if (tickstobedone > 100) {
+        let ticksdone = 0
+        for (var i = 0; i < tickstobedone/10-40; i++) {
+          Tick(10)
+          ticksdone += 10
+        }
+        tickstobedone -= ticksdone
       }
-      tickstobedone -= ticksdone
-    }
-    if (tickstobedone <= 100) {
-      for (var i = 0; i < tickstobedone; i++) {
-        Tick()
+      if (tickstobedone <= 100) {
+        for (var i = 0; i < tickstobedone; i++) {
+          Tick()
+        }
       }
     }
   }
