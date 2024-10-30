@@ -51,7 +51,7 @@ function load() {
     if (typeof savegame.up2 !== "undefined") up2 = new Decimal(savegame.up2);
     if (typeof savegame.up3 !== "undefined") up3 = new Decimal(savegame.up3);
     if (typeof savegame.up4 !== "undefined") up4 = new Decimal(savegame.up4);
-    if (typeof savegame.pup1 !== "undefined") new Decimal(pup1 = savegame.pup1;
+    if (typeof savegame.pup1 !== "undefined") pup1 = new Decimal(savegame.pup1);
     console.log("done loading")
     console.log("calculating offline progress")
     if (typeof savegame.savetime !== "undefined") {
