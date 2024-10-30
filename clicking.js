@@ -68,18 +68,18 @@ function UpdateText() {
     document.getElementById("toggleautoup").style.display = "none"
   }
   if (pup1 == false) {
-    if (Decimal.gte(a2, Decimal('1e12'))) {
+    if (Decimal.gte(a2, new Decimal('1e12'))) {
       document.getElementById("buypup1").style.display = "block"
     } else {
       document.getElementById("buypup1").style.display = "none"
     }
   } else {
     document.getElementById("buypup1").style.display = "none"
-    if (Decimal.gte(a2, Decimal('1e12'))) {
+    if (Decimal.gte(a2, new Decimal('1e12'))) {
       document.getElementById("rebirthbutton").style.display = "block"
     }
   }
-  if (!Decimal.gte(a2, Decimal('1e12'))) {
+  if (!Decimal.gte(a2, new Decimal('1e12'))) {
     document.getElementById("rebirthbutton").style.display = "none"
   }
 }
