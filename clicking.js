@@ -89,26 +89,10 @@ function UpdatePrice() {
   b = Decimal.pow(2, up2)
   c = Decimal.pow(2, up3)
   dt = Decimal.add(1, up4)
-  if (Decimal.lte(up1, 500)) {
     up1price = Decimal.pow(10, Decimal.add(up1, 1).pow(up1).sub(1)).mul(1.05)
-  } else {
-    up1price = Decimal.pow(100, Decimal.add(Decimal.sub(up1, 124), 1).pow(Decimal.sub(up1, 124)).sub(1)).mul(1.05).tetrate(Decimal.sub(up1, 124))
-  }
-  if (Decimal.lte(up2, 500)) {
     up2price = Decimal.pow(10, Decimal.add(up2, 1).pow(Decimal.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
-  } else {
-    up2price = Decimal.pow(100, Decimal.add(Decimal.sub(up2, 124), 1).pow(Decimal.sub(up2, 124)).sub(1)).mul(1.5).tetrate(Decimal.sub(up2, 124))
-  }
-  if (Decimal.lte(up3, 500)) {
     up3price = Decimal.pow(10, Decimal.add(up3, 1).pow(Decimal.mul(up3, 5).sub(1)).sub(1)).mul(Decimal.pow(10, 308))
-  } else {
-    up3price = Decimal.pow(100, Decimal.add(Decimal.sub(up3, 124), 1).pow(Decimal.mul(Decimal.sub(up3, 124), 5).sub(1)).sub(1)).mul(Decimal.pow(10, 308)).tetrate(Decimal.sub(up3, 124))
-  }
-  if (Decimal.lte(up4, 500)) {
     up4price = Decimal.pow(10, Decimal.add(up4, 1).pow(Decimal.sub(up4, 1)).sub(1)).mul(Decimal.pow(10, 18))
-  } else {
-    up4price = Decimal.pow(100, Decimal.add(Decimal.sub(up4, 124), 1).pow(Decimal.sub(up4, 125)).sub(1)).mul(Decimal.pow(10, 18)).tetrate(Decimal.sub(up4, 124))
-  }
   
 }
 
