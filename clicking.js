@@ -19,7 +19,7 @@ let pup1 = false
 let a2 = new Decimal(0.001)
 let prestigegain = new Decimal(0)
 let autobuy = false
-let a3 = Decimal(1)
+let a3 = new Decimal(1)
 setInterval(Loop, 50)
 
 function toggleautobuy() {
