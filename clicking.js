@@ -33,29 +33,29 @@ function toggleautobuy() {
 
 function UpdateText() {
   
-  document.getElementById("score").innerHTML = Decimal.toString(score, 3)
+  document.getElementById("score").innerHTML = Decimal.toStringWithDecimalPlaces(score, 3)
 
-  document.getElementById("a1").innerHTML = Decimal.toString(a1, 3)
-  document.getElementById("a").innerHTML = Decimal.toString(a, 3)
-  document.getElementById("b").innerHTML = Decimal.toString(b, 3)
-  document.getElementById("c").innerHTML = Decimal.toString(c, 3)
-  document.getElementById("up1cost").innerHTML = Decimal.toString(up1price, 3)
-  document.getElementById("up2cost").innerHTML = Decimal.toString(up2price, 3)
-  document.getElementById("up3cost").innerHTML = Decimal.toString(up3price, 3)
-  document.getElementById("up4cost").innerHTML = Decimal.toString(up4price, 3)
-  document.getElementById("dt").innerHTML = Decimal.toString(dt, 3)
-  document.getElementById("t").innerHTML = Decimal.toString(t, 1)
-  document.getElementById("a2").innerHTML = Decimal.toString(a2, 4)
-  document.getElementById("a3").innerHTML = Decimal.toString(a3, 3)
+  document.getElementById("a1").innerHTML = Decimal.toStringWithDecimalPlaces(a1, 3)
+  document.getElementById("a").innerHTML = Decimal.toStringWithDecimalPlaces(a, 3)
+  document.getElementById("b").innerHTML = Decimal.toStringWithDecimalPlaces(b, 3)
+  document.getElementById("c").innerHTML = Decimal.toStringWithDecimalPlaces(c, 3)
+  document.getElementById("up1cost").innerHTML = Decimal.toStringWithDecimalPlaces(up1price, 3)
+  document.getElementById("up2cost").innerHTML = Decimal.toStringWithDecimalPlaces(up2price, 3)
+  document.getElementById("up3cost").innerHTML = Decimal.toStringWithDecimalPlaces(up3price, 3)
+  document.getElementById("up4cost").innerHTML = Decimal.toStringWithDecimalPlaces(up4price, 3)
+  document.getElementById("dt").innerHTML = Decimal.toStringWithDecimalPlaces(dt, 3)
+  document.getElementById("t").innerHTML = Decimal.toStringWithDecimalPlaces(t, 1)
+  document.getElementById("a2").innerHTML = Decimal.toStringWithDecimalPlaces(a2, 4)
+  document.getElementById("a3").innerHTML = Decimal.toStringWithDecimalPlaces(a3, 3)
   if (Decimal.gt(a3, 1)) {
     document.getElementById("a3_txt").style.display = "block"
     document.getElementById("clickbutton").innerHTML = "score = score*(e^(a1*a2*a3*dt))^(ticks done)"
     document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(log(t/5+1)+1) <br>t = t+dt/10 <br>a2 gain * a3"
   }
   prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(10, 15)).add(1), Decimal.pow(10, 18)).pow(0.5).div(400).mul(a3)
-  document.getElementById("prestigegain").innerHTML = Decimal.toString(prestigegain, 4)
+  document.getElementById("prestigegain").innerHTML = Decimal.toStringWithDecimalPlaces(prestigegain, 4)
   let rebirthgain = Decimal.pow(Decimal.div(a2, 1e10), 0.25)
-  document.getElementById("rebirthgain").innerHTML = Decimal.toString(rebirthgain, 3)
+  document.getElementById("rebirthgain").innerHTML = Decimal.toStringWithDecimalPlaces(rebirthgain, 3)
   let prestigebutton = document.getElementById("prestigebutton")
   if (Decimal.gte(score, Decimal.pow(2, 1024))) {
     prestigebutton.style.display = "block"
