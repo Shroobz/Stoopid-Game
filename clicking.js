@@ -52,7 +52,7 @@ function UpdateText() {
     document.getElementById("clickbutton").innerHTML = "score = score*(e^(a1*a2*a3*dt))^(ticks done)"
     document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(log(t/5+1)+1) <br>t = t+dt/10 <br>a2 gain * a3"
   }
-  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400)
+  prestigegain = OmegaNum.log(OmegaNum.div(score, OmegaNum.pow(10, 15)).add(1), OmegaNum.pow(10, 18)).pow(0.5).div(400).mul(a3)
   document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
   let rebirthgain = OmegaNum.pow(OmegaNum.div(a2, 1e10), 0.25)
   document.getElementById("rebirthgain").innerHTML = format(rebirthgain, 3)
