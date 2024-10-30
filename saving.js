@@ -31,17 +31,17 @@ function load() {
   document.getElementById("a3_txt").style.display = "none"
   console.log("loading")
   pup1 = false;
-  up1 = new OmegaNum(0);
-  up2 = new OmegaNum(0);
-  up3 = new OmegaNum(0);
-  up4 = new OmegaNum(0);
-  t = new OmegaNum(0);
-  a3 = new OmegaNum(1);
-  a2 = new OmegaNum(0.001);
-  dt = new OmegaNum(1);
-  score = new OmegaNum(1);
+  up1 = new Decimal(0);
+  up2 = new Decimal(0);
+  up3 = new Decimal(0);
+  up4 = new Decimal(0);
+  t = new Decimal(0);
+  a3 = new Decimal(1);
+  a2 = new Decimal(0.001);
+  dt = new Decimal(1);
+  score = new Decimal(1);
   var savegame = JSON.parse(localStorage.getItem("save"));
-  if (savegame.savetime > 1730192705380) {
+  if (savegame.savetime > 1730303670971) {
     if (typeof savegame.score !== "undefined") score = savegame.score;
     if (typeof savegame.dt !== "undefined") dt = savegame.dt;
     if (typeof savegame.a2 !== "undefined") a2 = savegame.a2;
