@@ -41,7 +41,7 @@ function load() {
   dt = new Decimal(1);
   score = new Decimal(1);
   var savegame = JSON.parse(localStorage.getItem("save"));
-  if (savegame.savetime > 1730303670971) {
+  if (savegame.savetime > 1730303755189) {
     if (typeof savegame.score !== "undefined") score = savegame.score;
     if (typeof savegame.dt !== "undefined") dt = savegame.dt;
     if (typeof savegame.a2 !== "undefined") a2 = savegame.a2;
