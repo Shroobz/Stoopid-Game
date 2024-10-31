@@ -212,7 +212,7 @@ function buyall() {
 
 function buyprestigeup1() {
   if (pup1 == false) {
-    if (Decimal.gte(a2, Decimal('1e12'))) {
+    if (Decimal.gte(a2, new Decimal('1e12'))) {
       pup1 = true
       a2 = Decimal(0.001)
       score = new Decimal(1)
