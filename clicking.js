@@ -22,6 +22,23 @@ let autobuy = false
 let a3 = new Decimal(1)
 setInterval(Loop, 50)
 
+function format(decimal,precision=2,whole=false){decimal=new Decimal(decimal)
+if(isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)){player.hasNaN=true;return "NaN"}
+if(decimal.sign<0)return "-"+format(decimal.neg(),precision)
+if(decimal.mag==Number.POSITIVE_INFINITY)return "Infinity"
+if(decimal.eq(0))return "0"
+if(decimal.gte("eeee1000")){var slog=decimal.slog()
+if(slog.gte(1e3))return "10^^"+formatWhole(slog)
+else return "10^^"+regularFormat(slog,3)}else if(decimal.gte("eee100000"))return "eee"+format(decimal.log10().log10().log10(),3)
+else if(decimal.gte("ee100000"))return "ee"+format(decimal.log10().log10(),3)
+else if(decimal.gte("1e100000"))return "e"+format(decimal.log10(),3)
+else if(decimal.gte("1e1000"))return exponentialFormat(decimal,0)
+else if(decimal.gte(1e9))return exponentialFormat(decimal,precision)
+else if(decimal.gte(1e3))return commaFormat(decimal,0)
+else if(decimal.gte(Decimal.pow(0.1,precision))||whole)return regularFormat(decimal,precision)
+else if(decimal.gt("1e-100000"))return exponentialFormat(decimal,decimal.gte("1e-1000")?precision:0)
+else return "1/("+format(decimal.pow(-1),precision)+")"}
+
 function toggleautobuy() {
   if (autobuy == false) {
     autobuy = true
@@ -33,29 +50,29 @@ function toggleautobuy() {
 
 function UpdateText() {
   
-  document.getElementById("score").innerHTML = score.toStringWithDecimalPlaces(3)
+  document.getElementById("score").innerHTML = format(score)
 
-  document.getElementById("a1").innerHTML = a1.toStringWithDecimalPlaces(3)
-  document.getElementById("a").innerHTML = a.toStringWithDecimalPlaces(3)
-  document.getElementById("b").innerHTML = b.toStringWithDecimalPlaces(3)
-  document.getElementById("c").innerHTML = c.toStringWithDecimalPlaces(3)
-  document.getElementById("up1cost").innerHTML = up1price.toStringWithDecimalPlaces(3)
-  document.getElementById("up2cost").innerHTML = up2price.toStringWithDecimalPlaces(3)
-  document.getElementById("up3cost").innerHTML = up3price.toStringWithDecimalPlaces(3)
-  document.getElementById("up4cost").innerHTML = up4price.toStringWithDecimalPlaces(3)
-  document.getElementById("dt").innerHTML = dt.toStringWithDecimalPlaces(3)
-  document.getElementById("t").innerHTML = t.toStringWithDecimalPlaces(3)
-  document.getElementById("a2").innerHTML = a2.toStringWithDecimalPlaces(3)
-  document.getElementById("a3").innerHTML = a3.toStringWithDecimalPlaces(3)
+  document.getElementById("a1").innerHTML = format(a1)
+  document.getElementById("a").innerHTML = format(a)
+  document.getElementById("b").innerHTML = format(b)
+  document.getElementById("c").innerHTML = format(c)
+  document.getElementById("up1cost").innerHTML = format(up1price)
+  document.getElementById("up2cost").innerHTML = format(up2price)
+  document.getElementById("up3cost").innerHTML = format(up3price)
+  document.getElementById("up4cost").innerHTML = format(up4price)
+  document.getElementById("dt").innerHTML = format(dt)
+  document.getElementById("t").innerHTML = format(t)
+  document.getElementById("a2").innerHTML = format(a2)
+  document.getElementById("a3").innerHTML = format(a3)
   if (Decimal.gt(a3, 1)) {
     document.getElementById("a3_txt").style.display = "block"
     document.getElementById("clickbutton").innerHTML = "score = score*(e^(a1*a2*a3*dt))^(ticks done)"
     document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(log(t/5+1)+1) <br>t = t+dt/10 <br>a2 gain * a3"
   }
   prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(10, 15)).add(1), Decimal.pow(10, 18)).pow(0.5).div(400).mul(a3)
-  document.getElementById("prestigegain").innerHTML = prestigegain.toStringWithDecimalPlaces(4)
+  document.getElementById("prestigegain").innerHTML = format(prestigegain)
   let rebirthgain = Decimal.pow(Decimal.div(a2, 1e10), 0.25)
-  document.getElementById("rebirthgain").innerHTML = rebirthgain.toStringWithDecimalPlaces(3)
+  document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
   let prestigebutton = document.getElementById("prestigebutton")
   if (Decimal.gte(score, Decimal.pow(2, 1024))) {
     prestigebutton.style.display = "block"
