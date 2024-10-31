@@ -47,7 +47,7 @@ else return "10^^"+regularFormat(slog,3)}else if(decimal.gte("eee100000"))return
 else if(decimal.gte("ee100000"))return "ee"+format(decimal.log10().log10(),3)
 else if(decimal.gte("1e1000"))return "e"+format(decimal.log10(),3)
 else if(decimal.gte(1e9))return exponentialFormat(decimal,precision)
-else if(decimal.gte(1e3))return commaFormat(decimal,0)
+else if(decimal.gte(1e3))return commaFormat(decimal,3)
 else if(decimal.gte(Decimal.pow(0.1,precision))||whole)return regularFormat(decimal,precision)
 else if(decimal.gt("1e-100000"))return exponentialFormat(decimal,decimal.gte("1e-1000")?precision:0)
 else return "1/("+format(decimal.pow(-1),precision)+")"}
