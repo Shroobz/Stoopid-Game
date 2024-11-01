@@ -36,7 +36,7 @@ function fixValue(x,y=0){return x||new Decimal(y)}
 function sumValues(x){x=Object.values(x)
 if(!x[0])return new Decimal(0)
 return x.reduce((a,b)=>Decimal.add(a,b))}
-function format(decimal,precision=4,whole=false){decimal=new Decimal(decimal)
+function format(decimal,precision=3,whole=false){decimal=new Decimal(decimal)
 if(isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)){return "NaN"}
 if(decimal.sign<0)return "-"+format(decimal.neg(),precision)
 if(decimal.mag==Number.POSITIVE_INFINITY)return "Infinity"
@@ -91,7 +91,7 @@ function UpdateText() {
   document.getElementById("up4cost").innerHTML = format(up4price)
   document.getElementById("dt").innerHTML = format(dt)
   document.getElementById("t").innerHTML = format(t)
-  document.getElementById("a2").innerHTML = format(a2)
+  document.getElementById("a2").innerHTML = format(a2,4)
   document.getElementById("a3").innerHTML = format(a3)
   if (Decimal.gt(a3, 1)) {
     document.getElementById("a3_txt").style.display = "block"
@@ -99,7 +99,7 @@ function UpdateText() {
     document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(log(t/5+1)+1) <br>t = t+dt/10 <br>a2 gain * a3"
   }
   prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(10, 15)).add(1), Decimal.pow(10, 18)).pow(0.5).div(400).mul(a3)
-  document.getElementById("prestigegain").innerHTML = format(prestigegain)
+  document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
   if (a2.gte(new Decimal(1e12))) {
     let rebirthgain = Decimal.pow(Decimal.div(a2, 1e12).sub(1), 0.25)
     document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
