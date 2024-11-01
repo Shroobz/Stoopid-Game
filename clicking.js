@@ -36,8 +36,8 @@ function fixValue(x,y=0){return x||new Decimal(y)}
 function sumValues(x){x=Object.values(x)
 if(!x[0])return new Decimal(0)
 return x.reduce((a,b)=>Decimal.add(a,b))}
-function format(decimal,precision=4,whole=false){decimal=new Decimal(decimal)
-if(isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)){player.hasNaN=true;return "NaN"}
+function format(decimal,precision=3,whole=false){decimal=new Decimal(decimal)
+if(isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)){return "NaN"}
 if(decimal.sign<0)return "-"+format(decimal.neg(),precision)
 if(decimal.mag==Number.POSITIVE_INFINITY)return "Infinity"
 if(decimal.eq(0))return "0"
@@ -91,7 +91,7 @@ function UpdateText() {
   document.getElementById("up4cost").innerHTML = format(up4price)
   document.getElementById("dt").innerHTML = format(dt)
   document.getElementById("t").innerHTML = format(t)
-  document.getElementById("a2").innerHTML = format(a2)
+  document.getElementById("a2").innerHTML = format(a2,4)
   document.getElementById("a3").innerHTML = format(a3)
   if (Decimal.gt(a3, 1)) {
     document.getElementById("a3_txt").style.display = "block"
@@ -99,9 +99,11 @@ function UpdateText() {
     document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(log(t/5+1)+1) <br>t = t+dt/10 <br>a2 gain * a3"
   }
   prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(10, 15)).add(1), Decimal.pow(10, 18)).pow(0.5).div(400).mul(a3)
-  document.getElementById("prestigegain").innerHTML = format(prestigegain)
-  let rebirthgain = Decimal.pow(Decimal.div(a2, 1e10), 0.25)
-  document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
+  document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
+  if (a2.gte(new Decimal(1e12))) {
+    let rebirthgain = Decimal.pow(Decimal.div(a2, 1e12).sub(1), 0.25)
+    document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
+  }
   let prestigebutton = document.getElementById("prestigebutton")
   if (Decimal.gte(score, Decimal.pow(2, 1024))) {
     prestigebutton.style.display = "block"
@@ -135,8 +137,8 @@ function UpdatePrice() {
   b = Decimal.pow(2, up2)
   c = Decimal.pow(2, up3)
   dt = Decimal.add(1, up4)
-    up1price = Decimal.pow(10, Decimal.add(up1, 1).pow(up1).sub(1)).mul(1.05)
-    up2price = Decimal.pow(10, Decimal.add(up2, 1).pow(Decimal.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
+    up1price = Decimal.pow(10, Decimal.add(up1, 1).pow(up1).sub(1)).mul(2)
+    up2price = Decimal.pow(10, Decimal.add(up2, 1).pow(Decimal.mul(up2, 2).sub(1)).sub(1)).mul(500)
     up3price = Decimal.pow(10, Decimal.add(up3, 1).pow(Decimal.mul(up3, 5).sub(1)).sub(1)).mul(Decimal.pow(10, 308))
     up4price = Decimal.pow(10, Decimal.add(up4, 1).pow(Decimal.sub(up4, 1)).sub(1)).mul(Decimal.pow(10, 18))
   
@@ -145,6 +147,10 @@ function UpdatePrice() {
 function Tick(mult = 1) {
   if (mult >= 1000) { // to prevent console spam taking over easily (yeah it's still possible but "only" about 50x faster than normal gameplay and what hacker has time to ruin this lmao)
     mult = 1000
+  }
+
+  if (a2.lt(new Decimal(0.001))) {
+    a2 = new Decimal(0.001);
   }
   var answer = window.orientation > 1;
   document.getElementById("answer").innerHTML = answer
@@ -165,9 +171,9 @@ function Click() {
   Tick(3)
 }
 function Loop() {
-  Tick()
-  if (!score.gte(1.01)) {
-    score = new Decimal(1.01)
+  Tick(0.5)
+  if (!score.gte(1)) {
+    score = new Decimal(1)
   }
 }
 function buyup1() {
@@ -214,7 +220,7 @@ function buyprestigeup1() {
   if (pup1 == false) {
     if (Decimal.gte(a2, new Decimal('1e12'))) {
       pup1 = true
-      a2 = Decimal(0.001)
+      a2 = new Decimal(0.001)
       score = new Decimal(1)
       dt = new Decimal(1)
       a1 = new Decimal(1)
@@ -248,7 +254,7 @@ function prestige() {
 }
 
 function rebirth() {
-  let rebirthgain = Decimal.add(a3, Decimal.pow(Decimal.div(a2, 1e10), 0.25))
+  let rebirthgain = Decimal.add(a3, Decimal.pow(Decimal.div(a2, 1e12).sub(1), 0.25))
   score = new Decimal(1)
   dt = new Decimal(1)
   a1 = new Decimal(1)
@@ -259,7 +265,7 @@ function rebirth() {
   up2 = new Decimal(0)
   up3 = new Decimal(0)
   up4 = new Decimal(0)
-  a2 = Decimal(0.001)
+  a2 = new Decimal(0.001)
   a3 = rebirthgain
   save()
 }
