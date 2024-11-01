@@ -137,8 +137,8 @@ function UpdatePrice() {
   b = Decimal.pow(2, up2)
   c = Decimal.pow(2, up3)
   dt = Decimal.add(1, up4)
-    up1price = Decimal.pow(10, Decimal.add(up1, 1).pow(up1).sub(1)).mul(1.05)
-    up2price = Decimal.pow(10, Decimal.add(up2, 1).pow(Decimal.mul(up2, 2).sub(1)).sub(1)).mul(1.5)
+    up1price = Decimal.pow(10, Decimal.add(up1, 1).pow(up1).sub(1)).mul(2)
+    up2price = Decimal.pow(10, Decimal.add(up2, 1).pow(Decimal.mul(up2, 2).sub(1)).sub(1)).mul(500)
     up3price = Decimal.pow(10, Decimal.add(up3, 1).pow(Decimal.mul(up3, 5).sub(1)).sub(1)).mul(Decimal.pow(10, 308))
     up4price = Decimal.pow(10, Decimal.add(up4, 1).pow(Decimal.sub(up4, 1)).sub(1)).mul(Decimal.pow(10, 18))
   
@@ -171,9 +171,9 @@ function Click() {
   Tick(3)
 }
 function Loop() {
-  Tick()
-  if (!score.gte(1.01)) {
-    score = new Decimal(1.01)
+  Tick(0.5)
+  if (!score.gte(1)) {
+    score = new Decimal(1)
   }
 }
 function buyup1() {
