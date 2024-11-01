@@ -37,7 +37,7 @@ function sumValues(x){x=Object.values(x)
 if(!x[0])return new Decimal(0)
 return x.reduce((a,b)=>Decimal.add(a,b))}
 function format(decimal,precision=4,whole=false){decimal=new Decimal(decimal)
-if(isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)){player.hasNaN=true;return "NaN"}
+if(isNaN(decimal.sign)||isNaN(decimal.layer)||isNaN(decimal.mag)){return "NaN"}
 if(decimal.sign<0)return "-"+format(decimal.neg(),precision)
 if(decimal.mag==Number.POSITIVE_INFINITY)return "Infinity"
 if(decimal.eq(0))return "0"
