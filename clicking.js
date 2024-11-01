@@ -146,6 +146,10 @@ function Tick(mult = 1) {
   if (mult >= 1000) { // to prevent console spam taking over easily (yeah it's still possible but "only" about 50x faster than normal gameplay and what hacker has time to ruin this lmao)
     mult = 1000
   }
+
+  if (a2.lt(new Decimal(0.001))) {
+    a2 = new Decimal(0.001);
+  }
   var answer = window.orientation > 1;
   document.getElementById("answer").innerHTML = answer
   if (answer == true) {
@@ -214,7 +218,7 @@ function buyprestigeup1() {
   if (pup1 == false) {
     if (Decimal.gte(a2, new Decimal('1e12'))) {
       pup1 = true
-      a2 = Decimal(0.001)
+      a2 = new Decimal(0.001)
       score = new Decimal(1)
       dt = new Decimal(1)
       a1 = new Decimal(1)
@@ -259,7 +263,7 @@ function rebirth() {
   up2 = new Decimal(0)
   up3 = new Decimal(0)
   up4 = new Decimal(0)
-  a2 = Decimal(0.001)
+  a2 = new Decimal(0.001)
   a3 = rebirthgain
   save()
 }
