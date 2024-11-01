@@ -100,8 +100,10 @@ function UpdateText() {
   }
   prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(10, 15)).add(1), Decimal.pow(10, 18)).pow(0.5).div(400).mul(a3)
   document.getElementById("prestigegain").innerHTML = format(prestigegain)
-  let rebirthgain = Decimal.pow(Decimal.div(a2, 1e12).sub(1), 0.25)
-  document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
+  if (a2.gte(new Decimal(1e12))) {
+    let rebirthgain = Decimal.pow(Decimal.div(a2, 1e12).sub(1), 0.25)
+    document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
+  }
   let prestigebutton = document.getElementById("prestigebutton")
   if (Decimal.gte(score, Decimal.pow(2, 1024))) {
     prestigebutton.style.display = "block"
