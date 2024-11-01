@@ -100,7 +100,7 @@ function UpdateText() {
   }
   prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(10, 15)).add(1), Decimal.pow(10, 18)).pow(0.5).div(400).mul(a3)
   document.getElementById("prestigegain").innerHTML = format(prestigegain)
-  let rebirthgain = Decimal.pow(Decimal.div(a2, 1e10), 0.25)
+  let rebirthgain = Decimal.pow(Decimal.div(a2, 1e12), 0.25).sub(1)
   document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
   let prestigebutton = document.getElementById("prestigebutton")
   if (Decimal.gte(score, Decimal.pow(2, 1024))) {
@@ -252,7 +252,7 @@ function prestige() {
 }
 
 function rebirth() {
-  let rebirthgain = Decimal.add(a3, Decimal.pow(Decimal.div(a2, 1e10), 0.25))
+  let rebirthgain = Decimal.add(a3, Decimal.pow(Decimal.div(a2, 1e12), 0.25).sub(1))
   score = new Decimal(1)
   dt = new Decimal(1)
   a1 = new Decimal(1)
