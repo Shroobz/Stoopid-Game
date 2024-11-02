@@ -91,6 +91,8 @@ function load() {
   }
   console.log("Done")
   console.log(savegame)
+  document.getElementById("loadingscreen").style.display = "none"
+  document.getElementById("game").style.display = "block"
 }
 
 function deletesave() {

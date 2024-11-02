@@ -63,6 +63,7 @@ body {
   top: 15%;
   border: solid 5px;
   border-radius: 10px;
+  font-size: calc(16px + 6 * ((100vw - 320px) / 680));
 }
 
 #a2_txt {
@@ -119,7 +120,7 @@ body {
   left: 37.5%;
   width: 25%;
   bottom: 55%;
-  font-size: 24px
+  font-size: calc(16px + 6 * ((100vw - 320px) / 680));
 }
 
 #clickbutton {
@@ -153,6 +154,7 @@ body {
   top: 30%;
   right: 1.2%;
   border-radius: 49%;
+  font-size: calc(16px + 6 * ((100vw - 320px) / 680));
 }
 #toggleautoup {
   width: 15%;
