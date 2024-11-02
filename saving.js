@@ -2,7 +2,7 @@
 
 setInterval(save, 100)
 let lastsave = Date.now()
-
+let loadtime = Date.now()
 function save() {
   if (Date.now()-lastsave <= 5000) {
     return;
@@ -20,7 +20,8 @@ function save() {
     up3: up3,
     up4: up4,
     pup1: pup1,
-    savetime: Date.now()
+    savetime: Date.now(),
+    loadtime: loadtime
   }
   localStorage.setItem("save",JSON.stringify(save));
   console.log("done saving")
@@ -41,7 +42,7 @@ function load() {
   dt = new Decimal(1);
   score = new Decimal(1);
   var savegame = JSON.parse(localStorage.getItem("save"));
-  if (savegame.savetime > 1730303755189) {
+  if (savegame.loadtime != null) {
     if (typeof savegame.score !== "undefined") score = new Decimal(savegame.score);
     if (typeof savegame.dt !== "undefined") dt = new Decimal(savegame.dt);
     if (typeof savegame.a2 !== "undefined") a2 = new Decimal(savegame.a2);
