@@ -37,11 +37,7 @@ function UpdateText() {
   if (a2.eq(0.001) && a3.eq(1)) {
     progressbar = score.log10().div(Decimal.pow(2, 1024).log10())
   } else if (a3.eq(1)) {
-<<<<<<< HEAD
     progressbar = a2.max(Decimal.log(score.add(1), Decimal.pow(2, 1024)).pow(0.49).div(1000).mul(a3)).log10().div(new Decimal(1e10).log10()).div(2).min(0.5).max(0).max(progressbar)
-=======
-    progressbar = a2.max(Decimal.log(Decimal.div(score, Decimal.pow(2, 1024)).add(1), Decimal.pow(2, 1024)).pow(0.49).div(1000).mul(a3)).log10().div(new Decimal(1e10).log10()).div(2).min(0.5).max(0).max(progressbar)
->>>>>>> 7ec378f1b41139e53e13dbd002134b8bdcb2352a
     if (pup1) {progressbar = progressbar.add(0.5)}
   }
 
@@ -65,21 +61,12 @@ function UpdateText() {
   document.getElementById("a3").innerHTML = format(a3)
   if (Decimal.gt(a3, 1)) {
     document.getElementById("a3_txt").style.display = "block"
-<<<<<<< HEAD
     document.getElementById("clickbutton").innerHTML = "score = score • e<sup>a<sub>1</sub>a<sub>2</sub>a<sub>3</sub>dt</sup>"
     document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(sqrt(0.1t)) <br>t = t+dt <br>a2 gain * a3"
   }
   prestigegain = Decimal.log(score.add(1), Decimal.pow(2, 1024)).pow(0.49).div(1000).mul(a3)
   document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
   let rebirthgain = a2.div(1e10).pow(0.2)
-=======
-    document.getElementById("clickbutton").innerHTML = "score = score*(e^(a1*a2*a3*dt))"
-    document.getElementById("tutorial").innerHTML = "Formulas for the nerds<br> a1 = abc(sqrt(0.1t)) <br>t = t+dt <br>a2 gain * a3"
-  }
-  prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(2, 1024)).add(1), Decimal.pow(2, 1024)).pow(0.49).div(1000).mul(a3)
-  document.getElementById("prestigegain").innerHTML = format(prestigegain, 4)
-  let rebirthgain = a2.div(1e10).pow(1/3)
->>>>>>> 7ec378f1b41139e53e13dbd002134b8bdcb2352a
   if (a2.gte(new Decimal(1e10))) {
     document.getElementById("rebirthgain").innerHTML = format(rebirthgain)
   }
@@ -217,11 +204,7 @@ function buyprestigeup1() {
 
 
 function prestige() {
-<<<<<<< HEAD
   prestigegain = Decimal.log(score.add(1), Decimal.pow(2, 1024)).pow(0.49).div(1000).mul(a3)
-=======
-  prestigegain = Decimal.log(Decimal.div(score, Decimal.pow(2, 1024)).add(1), Decimal.pow(2, 1024)).pow(0.49).div(1000).mul(a3)
->>>>>>> 7ec378f1b41139e53e13dbd002134b8bdcb2352a
   if (prestigegain.gt(a2)) {
     a2 = prestigegain
     score = new Decimal(1)
@@ -239,11 +222,7 @@ function prestige() {
 }
 
 function rebirth() {
-<<<<<<< HEAD
   let rebirthgain = a2.div(1e10).pow(0.2)
-=======
-  let rebirthgain = a2.div(1e10).pow(1/3)
->>>>>>> 7ec378f1b41139e53e13dbd002134b8bdcb2352a
   score = new Decimal(1)
   dt = new Decimal(1)
   a1 = new Decimal(1)
