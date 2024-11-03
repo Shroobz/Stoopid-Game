@@ -42,7 +42,7 @@ function load() {
   dt = new Decimal(1);
   score = new Decimal(1);
   var savegame = JSON.parse(localStorage.getItem("save"));
-  if (savegame.loadtime != null) {
+  if (typeof savegame.loadtime !== "undefined") {
     if (typeof savegame.score !== "undefined") score = new Decimal(savegame.score);
     if (typeof savegame.dt !== "undefined") dt = new Decimal(savegame.dt);
     if (typeof savegame.a2 !== "undefined") a2 = new Decimal(savegame.a2);
