@@ -14,31 +14,58 @@
   <script src="saving.js"></script>
   <script src="sleep.js"></script>
   <div id="game" style="display: none;">
-    <button onclick="Click()" id="clickbutton">score = score • e<sup>a<sub>1</sub>a<sub>2</sub>dt</sup></button>
+    <!-- Variable Display -->
+    <div class="variable-display">
+      <div class="var-row">
+        <p class="vartext" id="score_txt">Score: <span id="score">1.000</span></p>
+        <p class="vartext" id="a3_txt">a<sub>3</sub>: <span id="a3">1.000</span></p>
+        <p class="vartext" id="a2_txt">a<sub>2</sub>: <span id="a2">0.0010</span></p>
+      </div>
+      <div class="var-row">
+        <p class="vartext" id="a1_txt">a<sub>1</sub>: <span id="a1">1.000</span></p>
+        <p class="vartext" id="a_txt">a: <span id="a">1.000</span></p>
+        <p class="vartext" id="b_txt">b: <span id="b">1.000</span></p>
+        <p class="vartext" id="c_txt">c: <span id="c">1.000</span></p>
+        <p class="vartext" id="dt_txt">dt: <span id="dt">1.000</span></p>
+        <p class="vartext" id="t_txt">t: <span id="t">0.000</span></p>
+      </div>
+    </div>
+  
+    <!-- Main Button Section -->
+    <div id="main-button-container">
+      <button onclick="Click()" id="clickbutton">score = score • e<sup>a<sub>1</sub>a<sub>2</sub>dt</sup></button>
+    </div>
+  
+    <!-- Tutorial Box -->
     <p id="tutorial">Formulas for the nerds<br> a1 = abc(sqrt(0.1t)) <br>t = t+dt</p>
-    <p class="vartext" id="score_txt">Score: <span id="score">1.000</span></p>
-    <p class="vartext" id="a3_txt">a<sub>3</sub>: <span id="a3">1.000</span></p>
-    <p class="vartext" id="a2_txt">a<sub>2</sub>: <span id="a2">0.0010</span></p>
-    <p class="vartext" id="a1_txt">a<sub>1</sub>: <span id="a1">1.000</span></p>
-    <p class="vartext" id="a_txt">a: <span id="a">1.000</span></p>
-    <p class="vartext" id="b_txt">b: <span id="b">1.000</span></p>
-    <p class="vartext" id="c_txt">c: <span id="c">1.000</span></p>
-    <p class="vartext" id="dt_txt">dt: <span id="dt">1.000</span></p>
-    <p class="vartext" id="t_txt">t: <span id="t">0.000</span></p>
-    <button onclick="buyup1()" class="upgrades" id="up1">Multiply a by 2 for <span id="up1cost">2.000</span> score</button>
-    <button onclick="buyup2()" class="upgrades" id="up2">Multiply b by 2 for <span id="up2cost">500.000</span> score</button>
-    <button onclick="buyup3()" class="upgrades" id="up3">Multiply c by 2 for <span id="up3cost">1.000e308</span>
-      score</button>
-    <button onclick="buyup4()" class="upgrades" id="up4">Add 1 to dt for <span id="up4cost">1.000e18</span> score</button>
-    <button onclick="buyall()" id="buyallbutton">Buy all upgrades</button>
-    <button onclick="buyprestigeup1()" id="buypup1">Reset all progress to automatically buy all upgrades every tick
-    </button>
-    <button onclick="toggleautobuy()" id="toggleautoup">Toggle autobuying <br>currently: <span
-        id="autobuy">false</span></button>
-    <p id="mobiledetection">Detected as mobile device: <span id="answer"></span> (switch to wide view if ur on mobile)</p>
-    <button onclick="prestige()" id="prestigebutton">a<sub>2</sub> = <span id="prestigegain">0.0010</span></button>
-    <button onclick="rebirth()" id="rebirthbutton">a<sub>3</sub> = <span id="rebirthgain">1.000</span></button>
-    <div style="position: absolute; top: 0%; left: 0%; height: 1%; width: 100%; background-color: gray;">
-      <div id="progress" style="background-color: green; position: absolute; top: 0%; left: 0%; height: 100%;"></div>
-  </div></div>
+  
+    <!-- Upgrade Buttons -->
+    <div class="upgrade-buttons">
+      <button onclick="buyup1()" class="upgrades" id="up1">Multiply a by 2 for <span id="up1cost">2.000</span>
+        score</button>
+      <button onclick="buyup2()" class="upgrades" id="up2">Multiply b by 2 for <span id="up2cost">500.000</span>
+        score</button>
+      <button onclick="buyup3()" class="upgrades" id="up3">Multiply c by 2 for <span id="up3cost">1.000e308</span>
+        score</button>
+      <button onclick="buyup4()" class="upgrades" id="up4">Add 1 to dt for <span id="up4cost">1.000e18</span>
+        score</button>
+      <button onclick="buyall()" id="buyallbutton">Buy all upgrades</button>
+      <button onclick="toggleautobuy()" id="toggleautoup">Toggle autobuying <br>currently: <span id="autobuy">false</span></button>
+      <button onclick="buyprestigeup1()" id="buypup1">Reset all progress to automatically buy all upgrades every
+        tick</button>
+      <button onclick="prestige()" id="prestigebutton">a<sub>2</sub> = <span id="prestigegain">0.0010</span></button>
+      <button onclick="rebirth()" id="rebirthbutton">a<sub>3</sub> = <span id="rebirthgain">1.000</span></button>
+    </div>
+
+  
+    <!-- Mobile Detection -->
+    <p id="mobiledetection">Detected as mobile device: <span id="answer"></span> (switch to wide view if on mobile)</p>
+  
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div id="progress"></div>
+    </div>
+  </div>
+
+
 </html>
